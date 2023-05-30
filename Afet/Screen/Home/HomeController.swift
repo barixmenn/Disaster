@@ -81,6 +81,8 @@ extension HomeController {
 //MARK: - Helpers
 extension HomeController {
     private func style() {
+        self.title = "Listeler"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         view.addSubview(helpButton)
         view.addSubview(getHelpButton)
         view.addSubview(listAidsButton)
@@ -89,21 +91,21 @@ extension HomeController {
     private func layout() {
         
         NSLayoutConstraint.activate([
-            helpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            helpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            helpButton.heightAnchor.constraint(equalToConstant: 230),
+            helpButton.heightAnchor.constraint(equalToConstant: 200),
             
             
             getHelpButton.topAnchor.constraint(equalTo: helpButton.bottomAnchor, constant: 20),
             getHelpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             getHelpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            getHelpButton.heightAnchor.constraint(equalToConstant: 230),
+            getHelpButton.heightAnchor.constraint(equalToConstant: 200),
             
             listAidsButton.topAnchor.constraint(equalTo: getHelpButton.bottomAnchor, constant: 20),
             listAidsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             listAidsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            listAidsButton.heightAnchor.constraint(equalToConstant: 230),
+            listAidsButton.heightAnchor.constraint(equalToConstant: 200),
         ])
     }
 }

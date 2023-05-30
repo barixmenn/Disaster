@@ -66,9 +66,9 @@ class HelpController: UIViewController {
     private lazy var infoButton : UIButton = {
         let button = UIButton()
         button.setTitle("Türkiye Cumhuriyeti numaram neden gerekiyor?", for: .normal)
-        button.backgroundColor = .black
-        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(handleInfoButton), for: .touchUpInside)
         return button
     }()
@@ -122,9 +122,9 @@ extension HelpController {
         stackView.addArrangedSubview(tcNumberTextField)
         stackView.addArrangedSubview(phoneNumberTextField)
         stackView.addArrangedSubview(categoryPickerView)
+        stackView.addArrangedSubview(helpButton)
         stackView.addArrangedSubview(infoButton)
 
-        stackView.addArrangedSubview(helpButton)
 
         
         stackView.translatesAutoresizingMaskIntoConstraints = false

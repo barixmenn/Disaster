@@ -8,7 +8,7 @@
 import UIKit
 
 private let reuserIdentifier = "cell"
-class ViewController: UIViewController {
+class HomeController: UIViewController {
     //MARK: - UI Elements
     private lazy var helpButton: UIButton = {
         let button = UIButton()
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 25)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
         return button
     }()
     
@@ -45,6 +46,8 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+   
     //MARK: - Properties
     
     //MARK: - Life Cycle
@@ -66,9 +69,17 @@ class ViewController: UIViewController {
     
 }
 
+//MARK: - Selector
+extension HomeController {
+    @objc private func handleHelpButton(_ sender: UIButton) {
+        let controller = HelpController()
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+}
 
 //MARK: - Helpers
-extension ViewController {
+extension HomeController {
     private func style() {
         view.addSubview(helpButton)
         view.addSubview(getHelpButton)

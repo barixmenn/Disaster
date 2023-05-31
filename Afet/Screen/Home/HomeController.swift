@@ -32,6 +32,7 @@ class HomeController: UIViewController {
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 25)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleGetHelpButton), for: .touchUpInside)
         return button
     }()
     
@@ -44,6 +45,7 @@ class HomeController: UIViewController {
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 25)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleListButton), for: .touchUpInside)
         return button
     }()
     
@@ -76,6 +78,19 @@ extension HomeController {
         self.navigationController?.pushViewController(controller, animated: true)
         
     }
+    
+    @objc private func handleGetHelpButton(_ sender: UIButton) {
+        let controller = GetHelpController()
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    @objc private func handleListButton(_ sender: UIButton) {
+        let controller = HelpListController()
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+
 }
 
 //MARK: - Helpers
@@ -89,7 +104,6 @@ extension HomeController {
     }
     
     private func layout() {
-        
         NSLayoutConstraint.activate([
             helpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),

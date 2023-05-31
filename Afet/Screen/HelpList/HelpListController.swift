@@ -36,7 +36,6 @@ class HelpListController: UITableViewController {
 //MARK: - Helpers
 extension HelpListController {
     private func style() {
-        self.title = "İhtiyaçlar"
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         self.navigationController?.navigationBar.prefersLargeTitles = false
 

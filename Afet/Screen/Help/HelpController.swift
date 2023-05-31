@@ -11,20 +11,7 @@ import UIKit
 class HelpController: UIViewController {
     //MARK: - UI Elements
     
-    private let nameTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Lütfen adınızı ve soyadınızı giriniz"
-        text.borderStyle = .roundedRect
-        return text
-    }()
-    
-    private let emailTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Lütfen mail hesabınızı giriniz"
-        text.borderStyle = .roundedRect
-        text.translatesAutoresizingMaskIntoConstraints = false
-        return text
-    }()
+
     
     private let tcNumberTextField: UITextField = {
         let text = UITextField()
@@ -117,8 +104,6 @@ extension HelpController {
         view.backgroundColor = .white
         view.addSubview(stackView)
         categoryPickerView.tag = 1
-        stackView.addArrangedSubview(nameTextField)
-        stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(tcNumberTextField)
         stackView.addArrangedSubview(phoneNumberTextField)
         stackView.addArrangedSubview(categoryPickerView)
@@ -139,8 +124,7 @@ extension HelpController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            emailTextField.heightAnchor.constraint(equalToConstant: 50),
-            nameTextField.heightAnchor.constraint(equalToConstant: 50),
+
             tcNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             phoneNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             helpButton.heightAnchor.constraint(equalToConstant: 50),

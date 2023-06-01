@@ -108,18 +108,18 @@ extension HomeController {
             helpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            helpButton.heightAnchor.constraint(equalToConstant: 200),
+            helpButton.heightAnchor.constraint(equalToConstant: 150),
             
             
             getHelpButton.topAnchor.constraint(equalTo: helpButton.bottomAnchor, constant: 20),
             getHelpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             getHelpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            getHelpButton.heightAnchor.constraint(equalToConstant: 200),
+            getHelpButton.heightAnchor.constraint(equalToConstant: 150),
             
             listAidsButton.topAnchor.constraint(equalTo: getHelpButton.bottomAnchor, constant: 20),
             listAidsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             listAidsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            listAidsButton.heightAnchor.constraint(equalToConstant: 200),
+            listAidsButton.heightAnchor.constraint(equalToConstant: 150),
         ])
     }
 }

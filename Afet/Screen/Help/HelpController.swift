@@ -31,6 +31,15 @@ class HelpController: UIViewController {
         return text
     }()
     
+    
+    private let categoryPickerTextField: UITextField = {
+          let inputTextView = UITextField()
+
+        inputTextView.borderStyle = .roundedRect
+           inputTextView.placeholder = "Lütfen bir seçim yapınız"
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+           return inputTextView
+       }()
     lazy var categoryPickerView: UIPickerView = {
            let pv = UIPickerView()
         pv.backgroundColor = UIColor(named: "5a92af")
@@ -47,6 +56,7 @@ class HelpController: UIViewController {
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.tintColor = .white
+        button.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
         return button
     }()
     
@@ -77,36 +87,72 @@ class HelpController: UIViewController {
     private func setup() {
         style()
         layout()
+        createToolbar()
     }
-    
-    //MARK: - Actions
-    
+
+    private func createToolbar() -> UIToolbar {
+           let tool = UIToolbar()
+           tool.sizeToFit()
+           
+           let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+           tool.setItems([done], animated: true)
+           
+           return tool
+       }
 }
 
 //MARK: - Selector
 extension HelpController {
     @objc private func handleInfoButton(_ sender: UIButton) {
         let controller = InfoController()
-               if let sheet = controller.sheetPresentationController {
-                   sheet.detents = [.medium()]
-               }
-               self.present(controller, animated: true)
-           }
+        if let sheet = controller.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        self.present(controller, animated: true)
     }
+    
+    @objc private func handleHelpButton(_ sender: UIButton) {
+        guard let tc = tcNumberTextField.text else {return}
+        guard let phone = phoneNumberTextField.text else {return}
+        guard let need = categoryPickerTextField.text else {return}
+        
+        HelpService.addHelp(name: "ilk", surname: "deneme", tc: tc, need: need) { error in
+            if let error = error {
+                           print(error.localizedDescription)
+                           return
+                       } else {
+                           print("başarılı bir şekilde eklendi.")
+                           self.dismiss(animated: true)
+
+                       }
+        }
+        
+    }
+    
+    @objc func donePressed() {
+        self.view.endEditing(true)
+    }
+       
+
+}
 
 
 //MARK: - Helpers
 extension HelpController {
     private func style() {
+        categoryPickerTextField.inputView = categoryPickerView
+                categoryPickerTextField.inputAccessoryView = createToolbar()
         self.title = "Yardım Et"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        
         view.addSubview(stackView)
+        
         categoryPickerView.tag = 1
         stackView.addArrangedSubview(tcNumberTextField)
         stackView.addArrangedSubview(phoneNumberTextField)
-        stackView.addArrangedSubview(categoryPickerView)
+        stackView.addArrangedSubview(categoryPickerTextField)
         stackView.addArrangedSubview(helpButton)
         stackView.addArrangedSubview(infoButton)
 
@@ -127,6 +173,7 @@ extension HelpController {
 
             tcNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             phoneNumberTextField.heightAnchor.constraint(equalToConstant: 50),
+            categoryPickerTextField.heightAnchor.constraint(equalToConstant: 50),
             helpButton.heightAnchor.constraint(equalToConstant: 50),
         ])
         
@@ -149,5 +196,9 @@ extension HelpController: UIPickerViewDataSource, UIPickerViewDelegate {
         default:
             return "no data "
         }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryPickerTextField.text = ihtiyac[row]
     }
 }

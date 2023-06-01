@@ -9,4 +9,4 @@ import Foundation
 import Firebase
 
 let COLLECTION_USERS = Firestore.firestore().collection("users")
-let COLLECTION_HELP = Firestore.firestore().collection("medicine")
+let COLLECTION_HELP = Firestore.firestore().collection("helps")

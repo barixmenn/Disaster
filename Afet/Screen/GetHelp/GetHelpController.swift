@@ -61,7 +61,7 @@ class GetHelpController: UIViewController {
         pv.backgroundColor = UIColor(named: "5a92af")
         return pv
     }()
-        
+    
     private let helpButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -139,16 +139,20 @@ extension GetHelpController {
         guard let tc = tcNumberTextField.text else {return}
         guard let need =  categoryPickerTextField.text else {return}
         
-        
-        HelpService.getHelp(name: name , phone: phone, tc: tc, need: need) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            } else {
-                print("başarılı bir şekilde eklendi.")
-                self.dismiss(animated: true)
+        if name != "" || phone != "" || need != "" || tc != ""  {
+            HelpService.getHelp(name: name , phone: phone, tc: tc, need: need) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    AlertMessage.alertMessageShow(title: .success, message: "Başarılı bir şekilde kaydedildi.", viewController: self)
+                    self.dismiss(animated: true)
+                }
             }
+        } else {
+            AlertMessage.alertMessageShow(title: .error, message: "Lütfen alanları kontrol ediniz", viewController: self)
         }
+        
     }
 }
 

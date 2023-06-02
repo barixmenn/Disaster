@@ -11,6 +11,16 @@ import FirebaseAuth
 
 class HelpController: UIViewController {
     //MARK: - UI Elements
+    
+    private let infoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Lütfen başında 0 olmadan giriniz"
+        label.textColor = .red
+        label.translatesAutoresizingMaskIntoConstraints = false
+         label.font = label.font.withSize(10)
+    
+        return label
+    }()
     private let phoneNumberTextField: UITextField = {
         let text = UITextField()
         text.placeholder = "Lütfen telefon numaranızı giriniz"
@@ -122,15 +132,21 @@ extension HelpController {
         guard let need = categoryPickerTextField.text else {return}
         guard let piece = pieceTextField.text else {return}
         
-        HelpService.addHelp(name: name , phone: phone , need: need, piece: piece) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            } else {
-                print("başarılı bir şekilde eklendi.")
-                self.dismiss(animated: true)
+        if name != "" || phone != "" || need != "" || piece != ""  {
+            HelpService.addHelp(name: name , phone: phone , need: need, piece: piece) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    AlertMessage.alertMessageShow(title: .success, message: "Başarılı bir şekilde kaydedildi.", viewController: self)
+                    
+                    self.dismiss(animated: true)
+                }
             }
+        } else {
+            AlertMessage.alertMessageShow(title: .error, message: "Lütfen alanları kontrol ediniz", viewController: self)
         }
+       
     }
     
     @objc func donePressed() {
@@ -153,6 +169,7 @@ extension HelpController {
         
         categoryPickerView.tag = 1
         stackView.addArrangedSubview(nameTextField)
+        stackView.addArrangedSubview(infoLabel)
         stackView.addArrangedSubview(phoneNumberTextField)
         stackView.addArrangedSubview(categoryPickerTextField)
         stackView.addArrangedSubview(pieceTextField)

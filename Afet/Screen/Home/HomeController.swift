@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 private let reuserIdentifier = "cell"
 class HomeController: UIViewController {
@@ -65,10 +66,17 @@ class HomeController: UIViewController {
     private func setup() {
         style()
         layout()
+        setupBarButtonItem()
     }
     
   
-    //MARK: - Actions
+    //MARK: - Functions
+    private func setupBarButtonItem() {
+           self.navigationItem.hidesBackButton = true
+           self.navigationController?.navigationBar.prefersLargeTitles = true
+           
+           self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Çıkış Yap ", style: .done, target: self, action: #selector(handleExitButton))
+       }
     
 }
 
@@ -91,6 +99,19 @@ extension HomeController {
         self.navigationController?.pushViewController(controller, animated: true)
         
     }
+    
+    @objc private func handleExitButton() {
+          do{
+              try Auth.auth().signOut()
+              DispatchQueue.main.async {
+                  let controller = UINavigationController(rootViewController: LoginController())
+                  controller.modalPresentationStyle = .fullScreen
+                  self.present(controller, animated: true)
+              }
+          }catch{
+              
+          }
+      }
 
 }
 

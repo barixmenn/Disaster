@@ -11,18 +11,6 @@ import FirebaseAuth
 
 class HelpController: UIViewController {
     //MARK: - UI Elements
-    
-    
-    
-    private let tcNumberTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Türkiye Cumhuriyeti kimlik numaranızı giriniz"
-        text.borderStyle = .roundedRect
-        text.translatesAutoresizingMaskIntoConstraints = false
-        text.keyboardType = .numberPad
-        return text
-    }()
-    
     private let phoneNumberTextField: UITextField = {
         let text = UITextField()
         text.placeholder = "Lütfen telefon numaranızı giriniz"
@@ -96,6 +84,7 @@ class HelpController: UIViewController {
         layout()
     }
     
+    
     private func createToolbar() -> UIToolbar {
         let tool = UIToolbar()
         tool.sizeToFit()
@@ -120,11 +109,10 @@ extension HelpController {
     
     @objc private func handleHelpButton(_ sender: UIButton) {
         guard let name = nameTextField.text else {return}
-        guard let tc = tcNumberTextField.text else {return}
         guard let phone = phoneNumberTextField.text else {return}
         guard let need = categoryPickerTextField.text else {return}
         
-        HelpService.addHelp(name: name , phone: phone , tc: tc, need: need) { error in
+        HelpService.addHelp(name: name , phone: phone , need: need) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -155,7 +143,6 @@ extension HelpController {
         
         categoryPickerView.tag = 1
         stackView.addArrangedSubview(nameTextField)
-        stackView.addArrangedSubview(tcNumberTextField)
         stackView.addArrangedSubview(phoneNumberTextField)
         stackView.addArrangedSubview(categoryPickerTextField)
         stackView.addArrangedSubview(helpButton)
@@ -175,8 +162,6 @@ extension HelpController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            
-            tcNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             phoneNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             categoryPickerTextField.heightAnchor.constraint(equalToConstant: 50),
             nameTextField.heightAnchor.constraint(equalToConstant: 50),

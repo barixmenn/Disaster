@@ -10,9 +10,24 @@ import FirebaseFirestore
 
 class HelpService {
     
-    static let shared = HelpService()
+    static func addHelp(name: String, phone: String, need: String, completion: @escaping (Error?) -> Void) {
+        guard let currentId = Auth.auth().currentUser?.uid else {return}
+        
+        let helpId = NSUUID().uuidString
+        
+        let data = [
+            "name" : name,
+            "phone": phone,
+            "need" : need,
+            "helpId" : helpId,
+            "timestamp" : Timestamp(date: Date())
+        ] as [String: Any]
+        
+        COLLECTION_HELP.document(currentId).collection("ongoing_need").document(helpId).setData(data, completion: completion)
+    }
     
-    static func addHelp(name: String, phone: String, tc: String,need: String, completion: @escaping (Error?) -> Void) {
+    
+    static func getHelp(name: String, phone: String, tc: String,need: String, completion: @escaping (Error?) -> Void) {
         guard let currentId = Auth.auth().currentUser?.uid else {return}
         
         let helpId = NSUUID().uuidString
@@ -26,7 +41,7 @@ class HelpService {
             "timestamp" : Timestamp(date: Date())
         ] as [String: Any]
         
-        COLLECTION_HELP.document(currentId).collection("ongoing_need").document(helpId).setData(data, completion: completion)
+        COLLECTION_HELP.document(currentId).collection("ongoing_help_need").document(helpId).setData(data, completion: completion)
         
     }
 }

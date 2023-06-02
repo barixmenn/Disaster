@@ -12,14 +12,14 @@ class HelpService {
     
     static let shared = HelpService()
     
-    static func addHelp(name: String, surname: String, tc: String,need: String, completion: @escaping (Error?) -> Void) {
+    static func addHelp(name: String, phone: String, tc: String,need: String, completion: @escaping (Error?) -> Void) {
         guard let currentId = Auth.auth().currentUser?.uid else {return}
         
         let helpId = NSUUID().uuidString
         
         let data = [
             "name" : name,
-            "surname": surname,
+            "phone": phone,
             "tc" : tc,
             "need" : need,
             "helpId" : helpId,

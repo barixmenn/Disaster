@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 
-struct Help {
+struct User {
     let id : String
     let name : String
     let surname : String

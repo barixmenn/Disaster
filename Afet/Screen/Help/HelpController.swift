@@ -43,6 +43,15 @@ class HelpController: UIViewController {
         return pv
     }()
     
+    private let pieceTextField: UITextField = {
+        let inputTextView = UITextField()
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.placeholder = "Lütfen bir adet giriniz"
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        return inputTextView
+    }()
+
+    
     private lazy var  helpButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +67,7 @@ class HelpController: UIViewController {
     private lazy var infoButton : UIButton = {
         let button = UIButton()
         button.setTitle("Türkiye Cumhuriyeti numaram neden gerekiyor?", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 10)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(handleInfoButton), for: .touchUpInside)
@@ -111,8 +120,9 @@ extension HelpController {
         guard let name = nameTextField.text else {return}
         guard let phone = phoneNumberTextField.text else {return}
         guard let need = categoryPickerTextField.text else {return}
+        guard let piece = pieceTextField.text else {return}
         
-        HelpService.addHelp(name: name , phone: phone , need: need) { error in
+        HelpService.addHelp(name: name , phone: phone , need: need, piece: piece) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -145,6 +155,7 @@ extension HelpController {
         stackView.addArrangedSubview(nameTextField)
         stackView.addArrangedSubview(phoneNumberTextField)
         stackView.addArrangedSubview(categoryPickerTextField)
+        stackView.addArrangedSubview(pieceTextField)
         stackView.addArrangedSubview(helpButton)
         stackView.addArrangedSubview(infoButton)
         
@@ -165,6 +176,7 @@ extension HelpController {
             phoneNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             categoryPickerTextField.heightAnchor.constraint(equalToConstant: 50),
             nameTextField.heightAnchor.constraint(equalToConstant: 50),
+            pieceTextField.heightAnchor.constraint(equalToConstant: 50),
             helpButton.heightAnchor.constraint(equalToConstant: 50),
         ])
         

@@ -87,7 +87,7 @@ extension HomeController {
     }
     
     @objc private func handleListButton(_ sender: UIButton) {
-        let controller = HelpListController()
+        let controller = ListTabbarController()
         self.navigationController?.pushViewController(controller, animated: true)
         
     }

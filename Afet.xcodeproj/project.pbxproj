@@ -28,6 +28,7 @@
 		605315072A27E45600F42097 /* HelpListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605315062A27E45600F42097 /* HelpListController.swift */; };
 		6053150A2A27EDA400F42097 /* HelpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605315092A27EDA400F42097 /* HelpService.swift */; };
 		6053150D2A27EDE600F42097 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053150C2A27EDE600F42097 /* User.swift */; };
+		6088D7DA2A2959F900382245 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D7D92A2959F900382245 /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		605315062A27E45600F42097 /* HelpListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListController.swift; sourceTree = "<group>"; };
 		605315092A27EDA400F42097 /* HelpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpService.swift; sourceTree = "<group>"; };
 		6053150C2A27EDE600F42097 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6088D7D92A2959F900382245 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 		605314ED2A27DCE400F42097 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				6088D7D82A2959F000382245 /* UserService */,
 				605315082A27ED9100F42097 /* HelpService */,
 				605314FA2A27DF3900F42097 /* AuthenticationService */,
 			);
@@ -234,6 +237,14 @@
 				6053150C2A27EDE600F42097 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6088D7D82A2959F000382245 /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				6088D7D92A2959F900382245 /* UserService.swift */,
+			);
+			path = UserService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +338,7 @@
 				6053150A2A27EDA400F42097 /* HelpService.swift in Sources */,
 				605314EC2A27DBB200F42097 /* RegisterController.swift in Sources */,
 				6049A2D42A269874009FF525 /* AppDelegate.swift in Sources */,
+				6088D7DA2A2959F900382245 /* UserService.swift in Sources */,
 				6049A2D62A269874009FF525 /* SceneDelegate.swift in Sources */,
 				605315012A27E0DF00F42097 /* Alert.swift in Sources */,
 				6049A2F72A26AA1E009FF525 /* InfoController.swift in Sources */,

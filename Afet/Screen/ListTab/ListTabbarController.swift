@@ -10,8 +10,8 @@ import UIKit
 
 class ListTabbarController: UITabBarController {
     // MARK: - Properties
-    let helpList = HelpListController()
-    let allHelpList = AllHelpListController()
+    let helpList = HelpListController()  
+    let allHelpList = NeedHelpListController()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

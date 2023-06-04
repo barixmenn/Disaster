@@ -46,6 +46,13 @@ class GetHelpController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
+    private let pieceTextField: UITextField = {
+        let inputTextView = UITextField()
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.placeholder = "Lütfen bir adet giriniz"
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        return inputTextView
+    }()
     
     
     private let categoryPickerTextField: UITextField = {
@@ -138,15 +145,16 @@ extension GetHelpController {
         guard let phone = phoneNumberTextField.text else {return}
         guard let tc = tcNumberTextField.text else {return}
         guard let need =  categoryPickerTextField.text else {return}
+        guard let piece = pieceTextField.text else {return}
+
         
-        if name != "" || phone != "" || need != "" || tc != ""  {
-            HelpService.getHelp(name: name , phone: phone, tc: tc, need: need) { error in
+        if name != "" || phone != "" || need != "" || tc != ""  || piece != "" {
+            HelpService.getHelp(name: name , phone: phone, tc: tc, need: need, piece: piece) { error in
                 if let error = error {
                     print(error.localizedDescription)
                     return
                 } else {
                     AlertMessage.alertMessageShow(title: .success, message: "Başarılı bir şekilde kaydedildi.", viewController: self)
-                    self.dismiss(animated: true)
                 }
             }
         } else {
@@ -163,7 +171,7 @@ extension GetHelpController {
         categoryPickerTextField.inputView = categoryPickerView
         categoryPickerTextField.inputAccessoryView = createToolbar()
         self.title = "Yardım Al"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.addSubview(stackView)
@@ -173,6 +181,7 @@ extension GetHelpController {
         stackView.addArrangedSubview(phoneNumberTextField)
         stackView.addArrangedSubview(locationTextField)
         stackView.addArrangedSubview(categoryPickerTextField)
+        stackView.addArrangedSubview(pieceTextField)
         stackView.addArrangedSubview(helpButton)
         stackView.addArrangedSubview(infoButton)
         
@@ -185,7 +194,7 @@ extension GetHelpController {
     
     private func layout() {
         NSLayoutConstraint.activate([
-            
+
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -195,6 +204,7 @@ extension GetHelpController {
             phoneNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             categoryPickerTextField.heightAnchor.constraint(equalToConstant: 50),
             locationTextField.heightAnchor.constraint(equalToConstant: 50),
+            pieceTextField.heightAnchor.constraint(equalToConstant: 50),
             helpButton.heightAnchor.constraint(equalToConstant: 50),
         ])
         

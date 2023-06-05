@@ -106,8 +106,8 @@
 				605314FF2A27E0D900F42097 /* Helper */,
 				605314EE2A27DD1900F42097 /* Constant */,
 				605314ED2A27DCE400F42097 /* Service */,
-				6049A2EF2A26A034009FF525 /* Scene */,
-				6049A2E82A269B62009FF525 /* Screen */,
+				6049A2EF2A26A034009FF525 /* Screen */,
+				6049A2E82A269B62009FF525 /* Scene */,
 				6049A2E72A269B55009FF525 /* Sources */,
 				6049A2E12A269875009FF525 /* Info.plist */,
 				605314FD2A27E01E00F42097 /* GoogleService-Info.plist */,
@@ -124,7 +124,7 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		6049A2E82A269B62009FF525 /* Screen */ = {
+		6049A2E82A269B62009FF525 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				60F724782A2A61D1005143B6 /* ListTab */,
@@ -136,7 +136,7 @@
 				6049A2F02A26A070009FF525 /* Help */,
 				6049A2EB2A269B79009FF525 /* Home */,
 			);
-			path = Screen;
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		6049A2EB2A269B79009FF525 /* Home */ = {
@@ -147,13 +147,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		6049A2EF2A26A034009FF525 /* Scene */ = {
+		6049A2EF2A26A034009FF525 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
 				6049A2DC2A269875009FF525 /* Assets.xcassets */,
 				6049A2DE2A269875009FF525 /* LaunchScreen.storyboard */,
 			);
-			path = Scene;
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		6049A2F02A26A070009FF525 /* Help */ = {

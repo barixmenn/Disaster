@@ -121,7 +121,6 @@ extension LoginController{
                 let controller = HomeController()
                 self.navigationController?.pushViewController(controller, animated: true)
                 print("success")
-                AlertMessage.alertMessageShow(title: .success, message: "Giriş başarılı.", viewController: self)
             }
         }
     }

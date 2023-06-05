@@ -50,7 +50,7 @@ class GetHelpController: UIViewController {
         inputTextView.layer.borderWidth = 1
         inputTextView.layer.cornerRadius = 7
         inputTextView.keyboardType = .phonePad
-        return text
+        return inputTextView
     }()
     
     private let locationTextField: UITextField = {

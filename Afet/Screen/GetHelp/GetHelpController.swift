@@ -95,7 +95,7 @@ class GetHelpController: UIViewController {
     //MARK: - Properties
     var ihtiyac = ["Pantolon", "Battaniye", "Yorgan", "Ayakkabı", "Şapka"]
     var indexOfPicker = Int()
-    
+    private let viewModel = GetHelpViewModel()
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,19 +154,7 @@ extension GetHelpController {
         guard let need =  categoryPickerTextField.text else {return}
         guard let piece = pieceTextField.text else {return}
         
-        
-        if name != "" || phone != "" || need != "" || tc != ""  || piece != "" {
-            HelpService.getHelp(name: name , phone: phone, tc: tc, need: need, piece: piece) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                } else {
-                    AlertMessage.alertMessageShow(title: .success, message: "Başarılı bir şekilde kaydedildi.", viewController: self)
-                }
-            }
-        } else {
-            AlertMessage.alertMessageShow(title: .error, message: "Lütfen alanları kontrol ediniz", viewController: self)
-        }
+        viewModel.addGetHelp(name: name, phone: phone, tc: tc, need: need, piece: piece, controller: self)
         
     }
 }

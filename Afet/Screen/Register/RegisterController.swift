@@ -11,6 +11,16 @@ import UIKit
 class RegisterController: UIViewController {
     
     //MARK: - UI Elements
+    
+    private let image: UIImageView  = {
+        let image = UIImageView()
+        image.image = UIImage(named: "register")
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
     private let nameTextField: UITextField = {
         let text = UITextField()
         text.placeholder = "Enter your name"
@@ -47,8 +57,8 @@ class RegisterController: UIViewController {
     private let loginButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Login", for: .normal)
-        button.backgroundColor = .blue
+        button.setTitle("Register", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.2470588235, green: 0.3058823529, blue: 0.3098039216, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.tintColor = .white
@@ -59,11 +69,12 @@ class RegisterController: UIViewController {
     private let stackView = UIStackView()
     
     //MARK: - Properties
+    
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        
     }
     
     //MARK: - Functions
@@ -80,34 +91,37 @@ class RegisterController: UIViewController {
 
 //MARK: - Selector
 extension RegisterController {
+    
+    //register
     @objc private func handleRegisterButton(_ sender: UIButton) {
-          guard let nameText = nameTextField.text else {return}
-          guard let surnameText = lastNameTextField.text else {return}
-          guard let emailText = emailTextField.text else {return}
-          guard let passwordText = passwordTextField.text else {return}
-          
-          let user = IAuthenticationService(emailText: emailText, passwordText: passwordText, nameText: nameText, surnameText: surnameText)
-          AuthenticationService.createUser(user: user) { error in
-              if let error = error {
-                  print(error.localizedDescription)
-                  AlertMessage.alertMessageShow(title: .error, message: "\(error.localizedDescription)", viewController: self)
-                  return
-              } else {
-                  let controller = HomeController()
-                  self.navigationController?.pushViewController(controller, animated: true)
-                  print("success")
-                  AlertMessage.alertMessageShow(title: .success, message: "Kayıt başarılı.", viewController: self)
-              }
-              
-          }
-          
-      }
-      
-    
-    @objc private func handleTextField(_ sender: UITextField){
-    
+        guard let nameText = nameTextField.text else {return}
+        guard let surnameText = lastNameTextField.text else {return}
+        guard let emailText = emailTextField.text else {return}
+        guard let passwordText = passwordTextField.text else {return}
+        
+        let user = IAuthenticationService(emailText: emailText, passwordText: passwordText, nameText: nameText, surnameText: surnameText)
+        AuthenticationService.createUser(user: user) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                AlertMessage.alertMessageShow(title: .error, message: "\(error.localizedDescription)", viewController: self)
+                return
+            } else {
+                let controller = HomeController()
+                self.navigationController?.pushViewController(controller, animated: true)
+                print("success")
+                AlertMessage.alertMessageShow(title: .success, message: "Kayıt başarılı.", viewController: self)
+            }
+            
+        }
+        
     }
     
+    
+    @objc private func handleTextField(_ sender: UITextField){
+        
+    }
+    
+    //keyboard
     @objc private func handleKeyboardWillShow(){
         self.view.frame.origin.y = -110
     }
@@ -118,16 +132,18 @@ extension RegisterController {
 //MARK: - Helpers
 extension RegisterController {
     
+    // keyboard settings
     private func keyboardSettings() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-  
+    
     private func style() {
-        
-        
         view.backgroundColor = .white
+        
+        view.addSubview(image)
         view.addSubview(stackView)
+        
         stackView.addArrangedSubview(nameTextField)
         stackView.addArrangedSubview(lastNameTextField)
         stackView.addArrangedSubview(emailTextField)
@@ -142,19 +158,22 @@ extension RegisterController {
     private func layout() {
         NSLayoutConstraint.activate([
             
+            //image
+            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 60),
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  40),
+            //stackView
+            stackView.topAnchor.constraint(equalTo: image.bottomAnchor, constant:  40),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
+            //others
             emailTextField.heightAnchor.constraint(equalToConstant: 50),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             nameTextField.heightAnchor.constraint(equalToConstant: 50),
             lastNameTextField.heightAnchor.constraint(equalToConstant: 50),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            
-            
         ])
     }
 }

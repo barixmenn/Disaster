@@ -22,6 +22,8 @@ class LoginController: UIViewController {
         let text = UITextField()
         text.placeholder = "Enter your mail"
         text.borderStyle = .roundedRect
+        text.layer.borderWidth = 1
+        text.layer.cornerRadius = 7
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -30,6 +32,8 @@ class LoginController: UIViewController {
         let text = UITextField()
         text.placeholder = "Enter your password"
         text.borderStyle = .roundedRect
+        text.layer.borderWidth = 1
+        text.layer.cornerRadius = 7
         text.translatesAutoresizingMaskIntoConstraints = false
         text.isSecureTextEntry = true
         return text
@@ -147,7 +151,8 @@ extension LoginController {
     }
     
     private func style() {
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
+        
         
         view.addSubview(image)
         view.addSubview(stackView)

@@ -32,6 +32,7 @@
 		6088D7DC2A296D4A00382245 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D7DB2A296D4A00382245 /* Help.swift */; };
 		6088D7DF2A296E2400382245 /* HelpCellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088D7DE2A296E2400382245 /* HelpCellList.swift */; };
 		60A243EB2A2D52B000C4735E /* NeedHelpCellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A243EA2A2D52B000C4735E /* NeedHelpCellList.swift */; };
+		60A243F12A2D6FF600C4735E /* HelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A243F02A2D6FF600C4735E /* HelpViewModel.swift */; };
 		60F7247A2A2A61E6005143B6 /* ListTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F724792A2A61E6005143B6 /* ListTabbarController.swift */; };
 		60F7247C2A2A6224005143B6 /* NeedHelpListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7247B2A2A6224005143B6 /* NeedHelpListController.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		6088D7DB2A296D4A00382245 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		6088D7DE2A296E2400382245 /* HelpCellList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCellList.swift; sourceTree = "<group>"; };
 		60A243EA2A2D52B000C4735E /* NeedHelpCellList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedHelpCellList.swift; sourceTree = "<group>"; };
+		60A243F02A2D6FF600C4735E /* HelpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewModel.swift; sourceTree = "<group>"; };
 		60F724792A2A61E6005143B6 /* ListTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTabbarController.swift; sourceTree = "<group>"; };
 		60F7247B2A2A6224005143B6 /* NeedHelpListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedHelpListController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +157,7 @@
 		6049A2F02A26A070009FF525 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				60A243EF2A2D6FED00C4735E /* ViewModel */,
 				6049A2F12A26A078009FF525 /* HelpController.swift */,
 			);
 			path = Help;
@@ -270,6 +273,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		60A243EF2A2D6FED00C4735E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				60A243F02A2D6FF600C4735E /* HelpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		60F724782A2A61D1005143B6 /* ListTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +379,7 @@
 				605314FC2A27DF5A00F42097 /* AuthenticationService.swift in Sources */,
 				605314F02A27DDAB00F42097 /* Constant.swift in Sources */,
 				60F7247A2A2A61E6005143B6 /* ListTabbarController.swift in Sources */,
+				60A243F12A2D6FF600C4735E /* HelpViewModel.swift in Sources */,
 				6053150A2A27EDA400F42097 /* HelpService.swift in Sources */,
 				60F7247C2A2A6224005143B6 /* NeedHelpListController.swift in Sources */,
 				605314EC2A27DBB200F42097 /* RegisterController.swift in Sources */,

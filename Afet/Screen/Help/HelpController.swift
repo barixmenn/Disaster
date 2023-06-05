@@ -88,6 +88,7 @@ class HelpController: UIViewController {
     //MARK: - Properties
     var ihtiyac = ["Pantolon", "Battaniye", "Yorgan", "Ayakkabı", "Şapka"]
     var indexOfPicker = Int()
+    private let viewModel = HelpViewModel()
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -131,22 +132,11 @@ extension HelpController {
         guard let phone = phoneNumberTextField.text else {return}
         guard let need = categoryPickerTextField.text else {return}
         guard let piece = pieceTextField.text else {return}
-        
-        if name != "" || phone != "" || need != "" || piece != ""  {
-            HelpService.addHelp(name: name , phone: phone , need: need, piece: piece) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                } else {
-                    AlertMessage.alertMessageShow(title: .success, message: "Başarılı bir şekilde kaydedildi.", viewController: self)
-                    
-                    self.dismiss(animated: true)
-                }
-            }
-        } else {
-            AlertMessage.alertMessageShow(title: .error, message: "Lütfen alanları kontrol ediniz", viewController: self)
-        }
-       
+    
+            
+        viewModel.addHelp(name: name, phone: phone, need: need, piece: piece, controller: self)
+ 
+
     }
     
     @objc func donePressed() {

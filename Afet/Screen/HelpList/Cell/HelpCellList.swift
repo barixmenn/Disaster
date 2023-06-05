@@ -70,13 +70,8 @@ extension HelpListCell {
     
     private func  layout() {
         addSubview(helpStackView)
-        addSubview(helpStackView)
-
-        
         NSLayoutConstraint.activate([
-
-            
-            helpStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            helpStackView.topAnchor.constraint(equalTo: topAnchor),
             helpStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 8),
             trailingAnchor.constraint(equalTo: helpStackView.trailingAnchor,constant: 3),
             bottomAnchor.constraint(equalTo: helpStackView.bottomAnchor, constant: 8),

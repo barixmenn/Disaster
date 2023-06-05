@@ -80,7 +80,7 @@ extension NeedHelpListController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
+        //collectionView.backgroundColor = .clear
         
     }
     private func layout(){
@@ -90,7 +90,7 @@ extension NeedHelpListController {
         NSLayoutConstraint.activate([
 
             //collection view
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor),
             view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 14)

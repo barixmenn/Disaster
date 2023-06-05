@@ -14,7 +14,8 @@ class HomeController: UIViewController {
     private lazy var helpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Yardım Et", for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.7921568627, blue: 0.6470588235, alpha: 1)
+
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 10
@@ -27,7 +28,7 @@ class HomeController: UIViewController {
     private lazy var getHelpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Yardım Al", for: .normal)
-        button.backgroundColor = .magenta
+        button.backgroundColor = #colorLiteral(red: 0.8078431373, green: 0.6705882353, blue: 0.5764705882, alpha: 1)
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 10
@@ -40,7 +41,8 @@ class HomeController: UIViewController {
     private lazy var listAidsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Yardımları Listele", for: .normal)
-        button.backgroundColor = .orange
+        button.backgroundColor = #colorLiteral(red: 0.7362564206, green: 0.6142653823, blue: 0.5249872804, alpha: 1)
+
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 10
@@ -59,7 +61,6 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         setup()
         view.backgroundColor = .white
-        
     }
     
     //MARK: - Functions

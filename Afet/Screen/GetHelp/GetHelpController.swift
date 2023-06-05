@@ -109,6 +109,7 @@ class GetHelpController: UIViewController {
     private func setup() {
         style()
         layout()
+        setupBarButtonItem()
     }
     
     //MARK: - Functions
@@ -120,6 +121,12 @@ class GetHelpController: UIViewController {
         tool.setItems([done], animated: true)
         
         return tool
+    }
+    
+    //MARK: - Functions
+    private func setupBarButtonItem() {
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.navigationController?.title = "Yardım al"
     }
     
 }
@@ -146,7 +153,7 @@ extension GetHelpController {
         guard let tc = tcNumberTextField.text else {return}
         guard let need =  categoryPickerTextField.text else {return}
         guard let piece = pieceTextField.text else {return}
-
+        
         
         if name != "" || phone != "" || need != "" || tc != ""  || piece != "" {
             HelpService.getHelp(name: name , phone: phone, tc: tc, need: need, piece: piece) { error in
@@ -170,10 +177,8 @@ extension GetHelpController {
     private func style() {
         categoryPickerTextField.inputView = categoryPickerView
         categoryPickerTextField.inputAccessoryView = createToolbar()
-        self.title = "Yardım Al"
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+
         view.addSubview(stackView)
         categoryPickerView.tag = 1
         stackView.addArrangedSubview(nameTextField)
@@ -194,7 +199,7 @@ extension GetHelpController {
     
     private func layout() {
         NSLayoutConstraint.activate([
-
+            
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),

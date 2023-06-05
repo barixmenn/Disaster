@@ -12,8 +12,8 @@ class InfoController: UIViewController {
     //MARK: - UI Elements
     private let infoLabel : UILabel = {
         let label = UILabel()
-        label.text = "Yardım ettikten sonra kayıtlara doğru bir biçimde eklemek için gereklidir."
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "Afet yardım uygulamamıza hoş geldiniz! Yardım talebi oluştururken TC numaranızı talep etmemizin nedeni, size daha hızlı ve etkili bir şekilde yardımcı olabilmemizdir. TC numarası, yardım taleplerini kaydedip takip ederken doğrulama ve kimlik teyidi amacıyla kullanılmaktadır. Bu sayede, afetzedelerin daha öncelikli ve ihtiyaçlarına yönelik yardım sağlanması sağlanırken, hızlı ve etkin bir yardım süreci sunmaya çalışıyoruz. Sizin güvenliğiniz bizim için büyük önem taşımaktadır. TC numaraları ve diğer kişisel bilgileriniz, gizlilik politikamız doğrultusunda korunmaktadır ve yalnızca yardım süreciyle ilgili yetkili personel tarafından erişilebilmektedir. Lütfen unutmayın ki TC numaranız sadece yardım talepleriyle sınırlı bir şekilde kullanılacak olup, hiçbir şekilde üçüncü taraflarla paylaşılmayacaktır. Amacımız, sizlere yardım edebilmek ve afet sonrası zor durumda olan insanlara destek sağlamaktır."
+        label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -24,7 +24,7 @@ class InfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .tertiarySystemBackground
         
     }
     

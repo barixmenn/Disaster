@@ -72,15 +72,16 @@ extension NeedHelpListController {
 extension NeedHelpListController {
     
     private func style(){
-        self.navigationController?.title = "Yardım taleplerim"
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        view.backgroundColor = .white
+        self.navigationItem.title = "Yardım Taleplerim"
+
+
+        view.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
         
         collectionView.register(NeedHelpCellList.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        //collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
         
     }
     private func layout(){
@@ -90,7 +91,7 @@ extension NeedHelpListController {
         NSLayoutConstraint.activate([
 
             //collection view
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor),
             view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 14)

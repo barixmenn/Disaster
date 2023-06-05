@@ -20,7 +20,7 @@ class LoginController: UIViewController {
     
     private let emailTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "Enter your mail"
+        text.placeholder = "Mail adresinizi giriniz"
         text.borderStyle = .roundedRect
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 7
@@ -30,7 +30,7 @@ class LoginController: UIViewController {
     
     private let passwordTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "Enter your password"
+        text.placeholder = "Şifrenizi giriniz"
         text.borderStyle = .roundedRect
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 7
@@ -50,7 +50,7 @@ class LoginController: UIViewController {
     private let loginButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Giriş Yap", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.2470588235, green: 0.3058823529, blue: 0.3098039216, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
@@ -82,7 +82,7 @@ class LoginController: UIViewController {
         let toolbar = UIToolbar()
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                         target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done,
+        let doneButton = UIBarButtonItem(title: "Tamam", style: .done,
                                          target: self, action: #selector(doneButtonTapped))
         
         toolbar.setItems([flexSpace, doneButton], animated: true)
@@ -171,7 +171,7 @@ extension LoginController {
         NSLayoutConstraint.activate([
             
             //image
-            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 60),
+            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             image.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -185,7 +185,7 @@ extension LoginController {
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             image.heightAnchor.constraint(equalToConstant: 170),
-            image.widthAnchor.constraint(equalToConstant: 100)
+            image.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
 }

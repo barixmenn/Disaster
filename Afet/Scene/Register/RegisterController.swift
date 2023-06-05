@@ -7,10 +7,13 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class RegisterController: UIViewController {
     
     //MARK: - UI Elements
+
+
     
     private let image: UIImageView  = {
         let image = UIImageView()
@@ -23,7 +26,7 @@ class RegisterController: UIViewController {
     
     private let nameTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "Enter your name"
+        text.placeholder = "Adınızı giriniz"
         text.borderStyle = .roundedRect
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 7
@@ -33,7 +36,7 @@ class RegisterController: UIViewController {
     
     private let lastNameTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "Enter your surname"
+        text.placeholder = "Soyadınızı giriniz"
         text.borderStyle = .roundedRect
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 7
@@ -43,7 +46,7 @@ class RegisterController: UIViewController {
     
     private let emailTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "Enter your mail"
+        text.placeholder = "Mail adresinizi giriniz"
         text.borderStyle = .roundedRect
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 7
@@ -53,7 +56,7 @@ class RegisterController: UIViewController {
     
     private let passwordTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "Enter your password"
+        text.placeholder = "Şifrenizi giriniz"
         text.borderStyle = .roundedRect
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 7
@@ -65,7 +68,7 @@ class RegisterController: UIViewController {
     private let loginButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Kayıt Ol", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.2470588235, green: 0.3058823529, blue: 0.3098039216, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
@@ -77,7 +80,7 @@ class RegisterController: UIViewController {
     private let stackView = UIStackView()
     
     //MARK: - Properties
-    
+ 
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -108,27 +111,28 @@ extension RegisterController {
         guard let passwordText = passwordTextField.text else {return}
         
         let user = IAuthenticationService(emailText: emailText, passwordText: passwordText, nameText: nameText, surnameText: surnameText)
-        AuthenticationService.createUser(user: user) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                AlertMessage.alertMessageShow(title: .error, message: "\(error.localizedDescription)", viewController: self)
-                return
-            } else {
-                let controller = HomeController()
-                self.navigationController?.pushViewController(controller, animated: true)
-                print("success")
-                AlertMessage.alertMessageShow(title: .success, message: "Kayıt başarılı.", viewController: self)
+        
+     
+            AuthenticationService.createUser(user: user) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    AlertMessage.alertMessageShow(title: .error, message: "\(error.localizedDescription)", viewController: self)
+                    return
+                } else {
+                    let controller = HomeController()
+                    self.navigationController?.pushViewController(controller, animated: true)
+                    print("success")
+                    AlertMessage.alertMessageShow(title: .success, message: "Kayıt başarılı.", viewController: self)
+                }
+                
             }
+        
             
-        }
+       
         
     }
     
-    
-    @objc private func handleTextField(_ sender: UITextField){
-        
-    }
-    
+
     //keyboard
     @objc private func handleKeyboardWillShow(){
         self.view.frame.origin.y = -110
@@ -167,7 +171,7 @@ extension RegisterController {
         NSLayoutConstraint.activate([
             
             //image
-            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 60),
+            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             image.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -182,6 +186,7 @@ extension RegisterController {
             nameTextField.heightAnchor.constraint(equalToConstant: 50),
             lastNameTextField.heightAnchor.constraint(equalToConstant: 50),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
+            image.heightAnchor.constraint(equalToConstant: 120),
         ])
     }
 }

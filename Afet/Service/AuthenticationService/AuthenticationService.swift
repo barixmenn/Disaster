@@ -25,16 +25,21 @@ final class AuthenticationService {
     
     // register
     static func createUser(user: IAuthenticationService, completion: @escaping(Error?)->Void) {
-        Auth.auth().createUser(withEmail: user.emailText, password: user.passwordText) { result, error in
-            guard let uid = result?.user.uid else {return}
-            let data = [
-                "email": user.emailText,
-                "name" : user.nameText,
-                "surname": user.surnameText,
-                "mail": user.passwordText,
-                "uid": uid
-            ] as [String : Any]
-            Firestore.firestore().collection("users").document(uid).setData(data, completion: completion)
+        
+          
+                Auth.auth().createUser(withEmail: user.emailText, password: user.passwordText) { result, error in
+                    guard let uid = result?.user.uid else {return}
+                    let data = [
+                        "email": user.emailText,
+                        "name" : user.nameText,
+                        "surname": user.surnameText,
+                        "mail": user.passwordText,
+                        "uid": uid
+                    ] as [String : Any]
+                    Firestore.firestore().collection("users").document(uid).setData(data, completion: completion)
+                }
+            }
         }
-    }
-}
+        
+    
+

@@ -119,7 +119,9 @@ extension HomeController {
 //MARK: - Helpers
 extension HomeController {
     private func style() {
+        view.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
         self.title = "Listeler"
+        
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationItem.setHidesBackButton(true, animated: true)
         view.addSubview(stackView)

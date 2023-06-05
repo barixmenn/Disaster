@@ -78,15 +78,15 @@ extension HelpListController {
 extension HelpListController {
     
     private func style(){
-        self.navigationController?.title = "Yardımlarım"
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
         
+        self.navigationItem.title = "Yardımlarım"
+
         collectionView.register(HelpListCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
         
     }
     private func layout(){

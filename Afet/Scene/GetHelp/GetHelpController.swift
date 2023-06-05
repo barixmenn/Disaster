@@ -12,44 +12,62 @@ class GetHelpController: UIViewController {
     
     
     //MARK: - UI Elements
+    private let infoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Lütfen başında 0 olmadan giriniz"
+        label.textColor = .red
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(10)
+        return label
+    }()
     
     private let nameTextField: UITextField = {
         let text = UITextField()
         text.placeholder = "Lütfen isminizi giriniz"
         text.borderStyle = .roundedRect
         text.translatesAutoresizingMaskIntoConstraints = false
+        text.layer.borderWidth = 1
+        text.layer.cornerRadius = 7
         text.keyboardType = .numberPad
         return text
     }()
     private let tcNumberTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Türkiye Cumhuriyeti kimlik numaranızı giriniz"
-        text.borderStyle = .roundedRect
-        text.translatesAutoresizingMaskIntoConstraints = false
-        text.keyboardType = .numberPad
-        return text
+        let inputTextView = UITextField()
+        inputTextView.placeholder = "Türkiye Cumhuriyeti kimlik numaranızı giriniz"
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
+        inputTextView.keyboardType = .numberPad
+        return inputTextView
     }()
     
     private let phoneNumberTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Lütfen telefon numaranızı giriniz"
-        text.borderStyle = .roundedRect
-        text.translatesAutoresizingMaskIntoConstraints = false
-        text.keyboardType = .phonePad
+        let inputTextView = UITextField()
+        inputTextView.placeholder = "Lütfen telefon numaranızı giriniz"
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
+        inputTextView.keyboardType = .phonePad
         return text
     }()
     
     private let locationTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Lütfen yaşadığını ili ve ilçeyi giriniz"
-        text.borderStyle = .roundedRect
-        text.translatesAutoresizingMaskIntoConstraints = false
-        return text
+        let inputTextView = UITextField()
+        inputTextView.placeholder = "Lütfen yaşadığını ili ve ilçeyi giriniz"
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        return inputTextView
     }()
     private let pieceTextField: UITextField = {
         let inputTextView = UITextField()
         inputTextView.borderStyle = .roundedRect
         inputTextView.placeholder = "Lütfen bir adet giriniz"
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         return inputTextView
     }()
@@ -57,9 +75,10 @@ class GetHelpController: UIViewController {
     
     private let categoryPickerTextField: UITextField = {
         let inputTextView = UITextField()
-        
         inputTextView.borderStyle = .roundedRect
         inputTextView.placeholder = "Lütfen bir seçim yapınız"
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         return inputTextView
     }()
@@ -73,7 +92,7 @@ class GetHelpController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Yardım Al", for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = #colorLiteral(red: 0.2470588235, green: 0.3058823529, blue: 0.3098039216, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
@@ -163,6 +182,7 @@ extension GetHelpController {
 //MARK: - Helpers
 extension GetHelpController {
     private func style() {
+        view.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
         categoryPickerTextField.inputView = categoryPickerView
         categoryPickerTextField.inputAccessoryView = createToolbar()
         categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -171,6 +191,7 @@ extension GetHelpController {
         categoryPickerView.tag = 1
         stackView.addArrangedSubview(nameTextField)
         stackView.addArrangedSubview(tcNumberTextField)
+        stackView.addArrangedSubview(infoLabel)
         stackView.addArrangedSubview(phoneNumberTextField)
         stackView.addArrangedSubview(locationTextField)
         stackView.addArrangedSubview(categoryPickerTextField)
@@ -188,10 +209,12 @@ extension GetHelpController {
     private func layout() {
         NSLayoutConstraint.activate([
             
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            //stackView
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 50),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
+            //others
             nameTextField.heightAnchor.constraint(equalToConstant: 50),
             tcNumberTextField.heightAnchor.constraint(equalToConstant: 50),
             phoneNumberTextField.heightAnchor.constraint(equalToConstant: 50),

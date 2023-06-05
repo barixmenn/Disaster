@@ -17,33 +17,37 @@ class HelpController: UIViewController {
         label.text = "Lütfen başında 0 olmadan giriniz"
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
-         label.font = label.font.withSize(10)
-    
+        label.font = label.font.withSize(10)
         return label
     }()
     private let phoneNumberTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Lütfen telefon numaranızı giriniz"
-        text.borderStyle = .roundedRect
-        text.translatesAutoresizingMaskIntoConstraints = false
-        text.keyboardType = .phonePad
-        return text
+        let inputTextView = UITextField()
+        inputTextView.placeholder = "Lütfen telefon numaranızı giriniz"
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        inputTextView.keyboardType = .phonePad
+        return inputTextView
     }()
     
     private let nameTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Lütfen adınızı giriniz"
-        text.borderStyle = .roundedRect
-        text.translatesAutoresizingMaskIntoConstraints = false
-        return text
+        let inputTextView = UITextField()
+        inputTextView.placeholder = "Lütfen adınızı giriniz"
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        return inputTextView
     }()
     
     
     private let categoryPickerTextField: UITextField = {
         let inputTextView = UITextField()
-        
-        inputTextView.borderStyle = .roundedRect
         inputTextView.placeholder = "Lütfen bir seçim yapınız"
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         return inputTextView
     }()
@@ -55,8 +59,10 @@ class HelpController: UIViewController {
     
     private let pieceTextField: UITextField = {
         let inputTextView = UITextField()
-        inputTextView.borderStyle = .roundedRect
         inputTextView.placeholder = "Lütfen bir adet giriniz"
+        inputTextView.borderStyle = .roundedRect
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.cornerRadius = 7
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         return inputTextView
     }()
@@ -66,23 +72,14 @@ class HelpController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Yardım Et", for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = #colorLiteral(red: 0.2470588235, green: 0.3058823529, blue: 0.3098039216, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.tintColor = .white
         button.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
         return button
     }()
-    
-    private lazy var infoButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("Türkiye Cumhuriyeti numaram neden gerekiyor?", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 10)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(handleInfoButton), for: .touchUpInside)
-        return button
-    }()
+
     
     private let stackView = UIStackView()
     //MARK: - Properties
@@ -119,24 +116,13 @@ class HelpController: UIViewController {
 
 //MARK: - Selector
 extension HelpController {
-    @objc private func handleInfoButton(_ sender: UIButton) {
-        let controller = InfoController()
-        if let sheet = controller.sheetPresentationController {
-            sheet.detents = [.medium()]
-        }
-        self.present(controller, animated: true)
-    }
-    
     @objc private func handleHelpButton(_ sender: UIButton) {
         guard let name = nameTextField.text else {return}
         guard let phone = phoneNumberTextField.text else {return}
         guard let need = categoryPickerTextField.text else {return}
         guard let piece = pieceTextField.text else {return}
     
-            
         viewModel.addHelp(name: name, phone: phone, need: need, piece: piece, controller: self)
- 
-
     }
     
     @objc func donePressed() {
@@ -148,6 +134,8 @@ extension HelpController {
 //MARK: - Helpers
 extension HelpController {
     private func style() {
+        view.backgroundColor = #colorLiteral(red: 0.9534673095, green: 0.9368072152, blue: 0.9117549062, alpha: 1)
+
         categoryPickerTextField.inputView = categoryPickerView
         categoryPickerTextField.inputAccessoryView = createToolbar()
         self.title = "Yardım Et"
@@ -159,12 +147,11 @@ extension HelpController {
         
         categoryPickerView.tag = 1
         stackView.addArrangedSubview(nameTextField)
-        stackView.addArrangedSubview(infoLabel)
         stackView.addArrangedSubview(phoneNumberTextField)
+        stackView.addArrangedSubview(infoLabel)
         stackView.addArrangedSubview(categoryPickerTextField)
         stackView.addArrangedSubview(pieceTextField)
         stackView.addArrangedSubview(helpButton)
-        stackView.addArrangedSubview(infoButton)
         
         
         

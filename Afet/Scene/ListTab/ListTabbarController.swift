@@ -28,8 +28,8 @@ class ListTabbarController: UITabBarController {
 // MARK: - Helpers
 extension ListTabbarController{
     private func style(){
-        viewControllers = [configureViewController(rootViewController: helpList, title: "Yardımlarım", image: "clock.badge.checkmark"),
-                           configureViewController(rootViewController: allHelpList, title: "Yardımlar", image: "checkmark.circle")
+        viewControllers = [configureViewController(rootViewController: helpList, title: "Yardımlarım", image: "checkmark.circle"),
+                           configureViewController(rootViewController: allHelpList, title: "Yardım taleplerim", image: "clock.badge.checkmark")
         ]
     }
     
